@@ -1,0 +1,4 @@
+#notes to install pytest
+pip install -U pytest --ignore-installed
+
+https://docs.pytest.org/en/latest/getting-started.html
