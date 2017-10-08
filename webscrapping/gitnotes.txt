@@ -1,0 +1,12 @@
+1.cmd
+git init codes
+
+2.to clone the entire repository
+git clone https://github.com/mangalamlabs/Learning.git clone_scrap
+
+3.git status
+
+4.git branch
+
+5.for puuling specific branch
+git pull origin scriptswithunittest
