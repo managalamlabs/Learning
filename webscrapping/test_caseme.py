@@ -42,7 +42,7 @@ def getting_links(g,s):
     #dilimited by href entire content taken into list
     #print len(j)
     #print j[1]
-    #if str(j[1]).find('canonical')>0:
+    #if str(j[1]).find('canonical')>0:\\
         #print str(j[1])[0:8]
         #print j[1][2:j[1][2:].find('"')+2]
     for i in j:
@@ -56,7 +56,7 @@ def getting_links(g,s):
 				
 a='D:\\Rama_code\\code_rama\\webscrapping\\input_ram.txt'
 b='D:\\Rama_code\\code_rama\\webscrapping\\out_put.txt'
-c='D:\\Rama_code\\code_rama\\webscrapping\\out_put_ref.txt'
+#c='D:\\Rama_code\\code_rama\\webscrappingout_put_ref.txt'
 k='http://economictimes.indiatimes.com/'
 def read_inputfile(z):
     lines = tuple(open(z, 'r'))
@@ -78,6 +78,6 @@ def testgetting_links():
     text_file.close()
 def test_see():
     testgetting_links()
-    assert filecmp.cmp(b,c)
+    assert filecmp.cmp(b,'webscrappingout_put_ref.txt')
     
 #test_see()
