@@ -1,0 +1,29 @@
+git Commands:
+
+first u have to setup a username and pwd for that
+
+git config --global user.name "User Name(Ur name)"    run the command
+
+git config --global user.email "emailid  (which u register Github account in github.com"
+
+
+now ur user name and email are registered
+
+ to access other's repository
+
+first u have to get clone/download link from the user
+
+once get   first clone the url for that u have to run the command
+
+
+git clone "clone URL(which omkar provides  note: link shpould end with .git)"
+
+once u doone u will get all the files from the cloned URL repository and repository also creatred in ur local
+
+after that set ur origin URL for that
+
+git remote add origin "cloned link"
+
+u can check which origin u have connected
+
+for that    u have to run    git remote -v
