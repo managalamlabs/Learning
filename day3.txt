@@ -1,0 +1,26 @@
+data lake
+
+INSERT INTO test (keywordname, url_string) VALUES ("googlellll", "www.googlelllfi.com");
+
+
+1.driver use insert python/java --odbc-->
+2.writing in a file,file import---my sql
+3.2 rows/minute can i directly call it in shell script-- shell script
+4.rest api -->inputs it will automatically
+
+
+1.driver connection:
+
+Startups-Nestle-Epigamia-curd-consumer product,<div class="publish_on flt">Updated: Oct 13, 2017, 08.19 AM IST,fetching_date,http://economictimes.indiatimes.com/small-biz/startups/how-consumer-product-startups-are-battling-roadblocks-to-stand-out-amid-giants/articleshow/61058432.cms
+
+
+8:30 100 urls inserted-->A
+
+8:32 100 urls-->B difference urls --->explore it
+
+2.check mysql import file_name
+
+3.mysql -uroot -ptoor webscrapping  -e "INSERT INTO test (keywordname, url_string) VALUES ("""googlelly123""", """www.googlelly123.com""");"
+
+
+mysql -uroot -ptoor webscrapping  -e /"INSERT INTO test (keywordname, url_string) VALUES (/"/"/"googlelly/"/"/", /"/"/"www.googlelly.com/"/"/");/"
