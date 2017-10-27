@@ -1,0 +1,11 @@
+use the below commond to run the script
+
+where significance parameters are below:
+
+1st param:path to store output
+2nd param:frompage
+3rd param:topage
+4th param:number of threads want to start
+
+
+python .\datascrapper_mc.py C:\Users\Dell\Desktop\managalamproject\datlakemoneycontrol 10 20 2
