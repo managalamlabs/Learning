@@ -1,0 +1,50 @@
+CREATE TABLE stocksmapping (stocknumber int NOT NULL AUTO_INCREMENT,stocksymbol varchar(255) NOT NULL,PRIMARY KEY (stocknumber));
+
+
+insert into stocksmapping select NULL,x.stocksymbol from (select distinct stocksymbol from hsprices)x;
+
+create table hsp as select distinct x.stocknumber,h.stocksymbol,h.tradeddate,h.openprice,h.dayhigh,h.daylow,h.closeprice,h.volumetraded from hsprices h left outer join stocksmapping x on h.stocksymbol=x.stocksymbol;
+
+##optional to use,u can set stocknumber##
+ALTER TABLE stocksmapping AUTO_INCREMENT=1000;
+#########################
+
+
+ALTER TABLE hsp PARTITION BY HASH(stocknumber) PARTITIONS 476;
+
+CREATE TABLE hsmindata (stockSymbol VARCHAR(40),tradeddate DATE,daylow DECIMAL(10,2),yearmin DECIMAL(10,2));
+
+#####stored proc to get 365 days minimum,which can be modified according to our utility############
+
+DELIMITER $$
+CREATE PROCEDURE `insert_stck` (IN num INT)
+BEGIN
+DECLARE stcknum INT;
+SET stcknum = 1;
+loop_label: LOOP
+insert into hsmindata select z.stksym as stocksymbol,z.tradedate,z.tradelow,z.minyear from (select  y.stocksymbol as stksym,y.htd as tradedate,y.hslow as tradelow,min(y.xlow) as minyear from (select distinct hs.stocksymbol,hs.tradeddate as htd,hs.daylow as hslow,x.tradeddate as xtd,x.daylow as xlow from hsp hs,(select stocksymbol,tradeddate,daylow from hsp where stocknumber=stcknum)x where hs.tradeddate > '2006-04-01' and hs.stocknumber=stcknum and (TIMESTAMPDIFF(DAY,x.tradeddate,hs.tradeddate) < 365 and TIMESTAMPDIFF(DAY,x.tradeddate,hs.tradeddate) > 1))y group by y.stocksymbol,y.htd,y.hslow)z where z.tradelow <= z.minyear;
+SET stcknum = stcknum + 1;
+IF stcknum >= num 
+THEN
+LEAVE loop_label;
+END IF;
+END LOOP;
+END$$;
+
+CALL insert_stck(476)$$
+
+
+
+---create dump-----------
+
+mysqldump -u root -ptoor stockdata hsprices > "C:\\Users\\Dell\\Desktop\\managalamproject\\hsprices.sql"
+   --load dump---------
+   -D is database where u want to push ur code
+  mysql -u root -ptoor -D webscrapping < "C:\\Users\\Dell\\Desktop\\managalamproject\\hsprices.sql"
+  
+mysqldump -u root -ptoor stockdata hsmindata > "C:\\Users\\Dell\\Desktop\\managalamproject\\repositories\\moneycontrolScrapping\\hsminprices.sql"
+
+---------simple analysis--------------
+
+select distinct stocksymbol from hsprices where year(tradeddate)=2008 and stocksymbol not in (select distinct stocksymbol from hsmindata where year(tradeddate)=2008);
+
