@@ -1,0 +1,19 @@
+getlinks()-->origin url ---> [data urls]
+
+parsedata()-->data url --> [data[open,close]]
+
+def getlinks(orginurl,propertiesfile): -->Damu,Rama
+	return list[urls]
+	
+	
+def paresedata(url,propertiesfile):-->Bhanu,pradeep,Swamy
+	return[rows]
+	
+
+	
+urls=getlinks(originurl)
+for url in urls:
+	db.insert(paresedata(url,propertiesfile))
+	
+	
+I will be working ajax and jquery
