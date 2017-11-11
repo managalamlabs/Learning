@@ -40,6 +40,9 @@ def get_page_spoof(s):
         return content
     else:
         return 'no content for link ' + s
+		
+###get required###
+##INPUT html page,josn properties for that file
 def get_required(strg,jason):
     # function that takes Page source and One of the jason object in for loop
     deff=str(strg)# converting it to string if in case if its different object
@@ -94,11 +97,15 @@ def get_required(strg,jason):
         #print 'Your file do not have proper get properties'
         return strg
 
-
+#########Please describe the functionlity here like below#####
+####Scrap urls###
+##Input parent_url,metadata file name
+##output urls which have data
 def scrap_urls(url,file_name):
     #used to pass url and json file
     page_source=get_page_spoof(url)
-    #json file is read and json in children are read and get_required function executed in for loop 
+    #json file is read and json in children are read and get_required function executed in for loop
+	###TODO HANDLE THE BELOW IN TRY CATCH BLOCK what if file doesnot exist,it should through a proper message message
     data=json.loads(open(file_name).read())
     jdata=data["children"]
     for jdatas in jdata:
@@ -107,5 +114,10 @@ def scrap_urls(url,file_name):
 
 objects=scrap_urls('http://www.stocklinedirect.com/stock-tips.html','D:\\test1.json')
 print objects
+
+#####Create Test method which takes all urls and generate the results,which is like doing regression testing when ever there is a change####
+##will return if all or passed else fail,u can use pytest if you are comfortable####
+def regtest():
+	return True
  
 
